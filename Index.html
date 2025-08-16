@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Infosport+ — 100% sport. Actus, scores en direct, calendriers, classements et vidéos.">
+  <title>Infosport+ — 100% Sport</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Palette Rouge & Blanc */
+      --bg:#ffffff;            /* fond blanc */
+      --text:#101418;          /* texte */
+      --muted:#6b7280;         /* gris */
+      --primary:#dc2626;       /* rouge vif */
+      --primary-2:#ef4444;     /* rouge clair */
+      --primary-3:#7f1d1d;     /* rouge sombre */
+      --card:#ffffff;          /* cartes */
+      --surface:#f9fafb;       /* surfaces claires */
+      --ring:rgba(220,38,38,.25);
+      --shadow:0 10px 30px rgba(2,6,23,.06);
+      --radius:18px;
+    }*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:var(--surface); color:var(--text)}
+img{max-width:100%; display:block}
+a{color:inherit}
+
+.container{width:min(1200px,92%); margin-inline:auto}
+
+/* Header */
+header{
+  position:sticky; top:0; z-index:40; background:rgba(255,255,255,.8); backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid #e5e7eb;
+}
+.nav{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.9rem 0}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none}
+.logo{width:40px; height:40px}
+.brand-name{font-weight:800; letter-spacing:.2px}
+.brand-name em{font-style:normal; color:var(--primary)}
+.nav-actions{display:flex; gap:.5rem; align-items:center}
+.btn{border:1px solid #e5e7eb; background:#fff; padding:.6rem .85rem; border-radius:12px; cursor:pointer; transition:.2s; box-shadow:var(--shadow)}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{border:none; background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; font-weight:700}
+.search{flex:1}
+input[type="search"]{width:100%; padding:.7rem .9rem; border-radius:12px; border:1px solid #e5e7eb; background:#fff}
+
+/* Hero */
+.hero{padding:1.4rem 0 1.6rem}
+.hero-grid{display:grid; grid-template-columns:1.35fr .9fr; gap:1.2rem}
+.hero-card{border-radius:var(--radius); background:
+  radial-gradient(800px 240px at 0% 0%, rgba(239,68,68,.16), transparent 60%),
+  #fff; box-shadow:var(--shadow); padding:1.2rem}
+.tag{display:inline-flex; align-items:center; gap:.35rem; padding:.25rem .55rem; border-radius:999px; background:rgba(220,38,38,.08); color:var(--primary-3); font-weight:700}
+.hero h1{margin:.35rem 0 .6rem; font-size:clamp(1.4rem, 2vw + .8rem, 2rem)}
+.meta{color:var(--muted); font-size:.95rem}
+
+/* Scores */
+.scores{display:grid; grid-template-columns:repeat(3,1fr); gap:.9rem}
+.score-card{background:#fff; border:1px solid #f3f4f6; border-radius:16px; padding:.9rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.6rem}
+.status{font-size:.86rem; color:var(--muted)}
+.teams{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:.4rem}
+.team{display:flex; align-items:center; gap:.45rem; font-weight:600}
+.badge{width:22px; height:22px; border-radius:7px; background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; display:grid; place-items:center; font-size:.78rem}
+.score{font-size:1.15rem; font-weight:800}
+
+/* Sections */
+section{margin:1.2rem 0}
+.section-title{display:flex; align-items:center; justify-content:space-between; margin:.2rem 0 .8rem}
+.section-title h2{margin:0; font-size:1.2rem}
+.chips{display:flex; gap:.4rem; flex-wrap:wrap}
+.chip{padding:.25rem .55rem; border-radius:999px; background:#f3f4f6; font-size:.8rem}
+
+/* News */
+.news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.card{background:#fff; border:1px solid #f3f4f6; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column}
+.card .p{padding:1rem}
+.card h3{margin:.2rem 0 .4rem; font-size:1rem}
+
+/* Two columns */
+.cols{display:grid; grid-template-columns:1.1fr .9fr; gap:1rem}
+.list{display:flex; flex-direction:column; gap:.6rem}
+.list-item{background:#fff; border:1px solid #f3f4f6; border-radius:14px; padding:.8rem; display:flex; align-items:center; justify-content:space-between}
+
+table{width:100%; border-collapse:collapse; background:#fff; border:1px solid #f3f4f6; border-radius:16px; overflow:hidden; box-shadow:var(--shadow)}
+thead th{font-size:.9rem; text-align:left; background:#f9fafb; padding:.7rem .8rem}
+tbody td{padding:.6rem .8rem; border-top:1px solid #f3f4f6}
+
+/* Footer */
+footer{margin-top:2rem; padding:1.2rem 0; border-top:1px solid #e5e7eb; color:var(--muted)}
+
+/* Focus & a11y */
+:focus-visible{outline:3px solid var(--ring); outline-offset:2px; border-radius:10px}
+
+/* Responsive */
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .scores{grid-template-columns:repeat(2,1fr)}
+  .news-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .scores{grid-template-columns:1fr}
+  .news-grid{grid-template-columns:1fr}
+  .nav{flex-wrap:wrap}
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Navigation principale">
+      <a class="brand" href="#" aria-label="Infosport+ Accueil">
+        <!-- Logo SVG stylisé (choix assistant) -->
+        <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#dc2626"/>
+              <stop offset="100%" stop-color="#ef4444"/>
+            </linearGradient>
+            <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#ef4444" flood-opacity=".25"/>
+            </filter>
+          </defs>
+          <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#g)" filter="url(#s)"/>
+          <!-- Monogramme IS+ -->
+          <path d="M20 22h6v20h-6zM28 22h16v6H28zM28 30h10v6H28zM28 38h16v6H28z" fill="#fff" opacity=".95"/>
+          <g transform="translate(40,18)">
+            <rect x="0" y="0" width="6" height="18" rx="2" fill="#fff"/>
+            <rect x="-6" y="6" width="18" height="6" rx="2" fill="#fff"/>
+          </g>
+          <title>Infosport+ — logo</title>
+        </svg>
+        <span class="brand-name">Info<em>sport+</em></span>
+      </a>
+      <form class="search" role="search" aria-label="Recherche" onsubmit="event.preventDefault()">
+        <input id="search" type="search" placeholder="Rechercher un club, un joueur, une ligue…" />
+      </form>
+      <div class="nav-actions">
+        <button class="btn" id="switchPalette" title="Basculer Rouge/Bleu">Rouge/Bleu</button>
+        <button class="btn btn-primary" id="subscribeBtn">S'abonner</button>
+      </div>
+    </div>
+  </header>  <main>
+    <!-- HERO + SCORES -->
+    <section class="hero container">
+      <div class="hero-grid">
+        <article class="hero-card" aria-labelledby="headline-title">
+          <div class="tag">À la une</div>
+          <h1 id="headline-title">Bienvenue sur <strong>Infosport+</strong> — actu 100% sport</h1>
+          <p class="meta">Scores en direct · Breaking news · Statistiques · Calendriers</p>
+          <div style="display:flex; gap:.6rem; margin-top:.6rem">
+            <button class="btn btn-primary" onclick="scrollToSection('scores')">Voir les scores</button>
+            <button class="btn" onclick="scrollToSection('actus')">Dernières actus</button>
+          </div>
+        </article>
+        <aside class="hero-card">
+          <div class="section-title"><h2 style="margin:0">Scores en direct</h2><span class="chip" id="liveCount">0 matchs</span></div>
+          <div class="scores" id="scores" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section><!-- ACTUALITÉS -->
+<section class="container" id="actus" aria-labelledby="actus-title">
+  <div class="section-title">
+    <h2 id="actus-title">Dernières actualités</h2>
+    <div class="chips">
+      <span class="chip">Football</span>
+      <span class="chip">Basket</span>
+      <span class="chip">Tennis</span>
+      <span class="chip">F1</span>
+    </div>
+  </div>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- CALENDRIER + CLASSEMENT -->
+<section class="container">
+  <div class="cols">
+    <div>
+      <div class="section-title"><h2>Calendrier du jour</h2><span class="chip" id="fixturesDate"></span></div>
+      <div class="list" id="fixtures"></div>
+    </div>
+    <div>
+      <div class="section-title"><h2>Classement — Ligue démo</h2></div>
+      <div style="overflow:auto; border-radius:16px">
+        <table aria-label="Classement de la ligue démo">
+          <thead>
+            <tr><th>#</th><th>Équipe</th><th>MJ</th><th>G</th><th>N</th><th>P</th><th>BM</th><th>BE</th><th>DB</th><th>Pts</th></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section class="container">
+  <div class="section-title"><h2>Vidéos</h2></div>
+  <div class="news-grid">
+    <div class="card">
+      <iframe width="100%" style="aspect-ratio:16/9" src="https://www.youtube.com/embed/JwYX52BP2Sk" title="Highlights démo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="p"><h3>Highlights — Match démo</h3><p class="meta">YouTube • Lecture intégrée</p></div>
+    </div>
+    <div class="card">
+      <iframe width="100%" style="aspect-ratio:16/9" src="https://www.youtube.com/embed/W6NZfCO5SIk" title="Basket recap" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="p"><h3>Récap — Basket</h3><p class="meta">YouTube • Lecture intégrée</p></div>
+    </div>
+    <div class="card">
+      <iframe width="100%" style="aspect-ratio:16/9" src="https://www.youtube.com/embed/zJSY8tbf_ys" title="Tennis tips" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="p"><h3>Analyse — Tennis</h3><p class="meta">YouTube • Lecture intégrée</p></div>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap">
+        <div style="display:flex; align-items:center; gap:.6rem">
+          <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+            <defs>
+              <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#dc2626"/>
+                <stop offset="100%" stop-color="#ef4444"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#g2)"/>
+            <path d="M20 22h6v20h-6zM28 22h16v6H28zM28 30h10v6H28zM28 38h16v6H28z" fill="#fff" opacity=".95"/>
+            <g transform="translate(40,18)">
+              <rect x="0" y="0" width="6" height="18" rx="2" fill="#fff"/>
+              <rect x="-6" y="6" width="18" height="6" rx="2" fill="#fff"/>
+            </g>
+          </svg>
+          <strong>Infosport+</strong>
+        </div>
+        <form id="newsletter" style="display:flex; gap:.5rem; flex-wrap:wrap" onsubmit="subscribe(event)">
+          <input required name="email" type="email" placeholder="Votre email pour l'alerte buts & actus" />
+          <button class="btn btn-primary" type="submit">S'abonner</button>
+        </form>
+      </div>
+      <p style="margin:.6rem 0 0; font-size:.92rem">© <span id="year"></span> Infosport+. Démo front-end (HTML/CSS/JS, sans serveur).</p>
+    </div>
+  </footer>  <script>
+    // Palette switch Rouge/Bleu (optionnelle)
+    const switchBtn = document.getElementById('switchPalette');
+    let palette = localStorage.getItem('palette') || 'red';
+    function applyPalette(){
+      if(palette === 'blue'){
+        document.documentElement.style.setProperty('--primary', '#2563eb');
+        document.documentElement.style.setProperty('--primary-2', '#3b82f6');
+        document.documentElement.style.setProperty('--primary-3', '#1e3a8a');
+        document.documentElement.style.setProperty('--ring', 'rgba(37,99,235,.25)');
+      } else {
+        document.documentElement.style.setProperty('--primary', '#dc2626');
+        document.documentElement.style.setProperty('--primary-2', '#ef4444');
+        document.documentElement.style.setProperty('--primary-3', '#7f1d1d');
+        document.documentElement.style.setProperty('--ring', 'rgba(220,38,38,.25)');
+      }
+    }
+    switchBtn.addEventListener('click', ()=>{ palette = palette==='red'?'blue':'red'; localStorage.setItem('palette', palette); applyPalette(); });
+    applyPalette();
+
+    // Scroll helper
+    function scrollToSection(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+
+    // Données démo
+    const liveScores = [
+      {home:"United", away:"City", hs:1, as:0, minute:56, comp:"Premier League"},
+      {home:"Real FC", away:"Tigers", hs:2, as:2, minute:77, comp:"Ligue 1"},
+      {home:"Eagles", away:"Panthers", hs:3, as:1, minute:90, comp:"Serie A"},
+      {home:"Heat", away:"Storm", hs:89, as:92, minute:"Q4", comp:"NBA"},
+      {home:"Reds", away:"Blues", hs:1, as:1, minute:58, comp:"UEFA"},
+      {home:"Warriors", away:"Kings", hs:76, as:74, minute:"Q3", comp:"Basket"}
+    ];
+
+    const news = [
+      {title:"Mercato : transfert record en vue", img:"https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?q=80&w=1200&auto=format&fit=crop", tag:"Football", time:"Il y a 2 h"},
+      {title:"Basket : duel au sommet cette nuit", img:"https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop", tag:"Basket", time:"Il y a 1 h"},
+      {title:"Tennis : le n°1 impressionne encore", img:"https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1200&auto=format&fit=crop", tag:"Tennis", time:"Il y a 30 min"},
+      {title:"F1 : stratégie gagnante aux stands", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop", tag:"F1", time:"Il y a 3 h"},
+      {title:"Athlé : record continental battu", img:"https://images.unsplash.com/photo-1517646331032-8e4b7848e44b?q=80&w=1200&auto=format&fit=crop", tag:"Athlétisme", time:"Il y a 50 min"},
+      {title:"Boxe : KO au 2e round", img:"https://images.unsplash.com/photo-1594296306217-9a0e86b414bc?q=80&w=1200&auto=format&fit=crop", tag:"Boxe", time:"Il y a 4 h"}
+    ];
+
+    const fixtures = [
+      {time:"13:00", home:"Dolphins", away:"Wolves", comp:"Ligue 1"},
+      {time:"15:30", home:"Falcons", away:"Giants", comp:"Serie A"},
+      {time:"18:45", home:"Rockets", away:"Bulls", comp:"NBA"},
+      {time:"20:00", home:"United", away:"City", comp:"Premier League"}
+    ];
+
+    const standings = [
+      {team:"United", p:20, w:14, d:4,  l:2,  gf:38, ga:17},
+      {team:"City",   p:20, w:13, d:5,  l:2,  gf:41, ga:19},
+      {team:"Eagles", p:20, w:12, d:5,  l:3,  gf:33, ga:16},
+      {team:"Tigers", p:20, w:10, d:6,  l:4,  gf:29, ga:22},
+      {team:"Giants", p:20, w:9,  d:7,  l:4,  gf:27, ga:21},
+      {team:"Reds",   p:20, w:8,  d:6,  l:6,  gf:24, ga:23}
+    ].map((t,i)=>({pos:i+1, ...t, gd:t.gf - t.ga, pts:t.w*3 + t.d}));
+
+    // Rendus
+    function renderScores(){
+      const cont = document.getElementById('scores');
+      cont.innerHTML = '';
+      liveScores.slice(0,6).forEach(m=>{
+        const card = document.createElement('div');
+        card.className = 'score-card';
+        card.innerHTML = `
+          <div class="status">${m.comp} • <strong>${m.minute}'</strong></div>
+          <div class="teams">
+            <div class="team"><span class="badge">H</span> ${m.home}</div>
+            <div class="score">${m.hs} - ${m.as}</div>
+            <div class="team" style="justify-content:flex-end">${m.away} <span class="badge">A</span></div>
+          </div>`;
+        cont.appendChild(card);
+      });
+      document.getElementById('liveCount').textContent = `${liveScores.length} matchs`;
+    }
+
+    function renderNews(filter=''){
+      const grid = document.getElementById('newsGrid');
+      grid.innerHTML = '';
+      news.filter(n => n.title.toLowerCase().includes(filter.toLowerCase()) || n.tag.toLowerCase().includes(filter.toLowerCase()))
+          .forEach(n=>{
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.innerHTML = `
+              <img alt="${n.tag}" src="${n.img}" loading="lazy"/>
+              <div class="p">
+                <span class="chip">${n.tag}</span>
+                <h3>${n.title}</h3>
+                <p class="meta" style="color:var(--muted)">${n.time}</p>
+              </div>`;
+            grid.appendChild(card);
+          });
+    }
+
+    function renderFixtures(){
+      document.getElementById('fixturesDate').textContent = new Date().toLocaleDateString('fr-FR', {weekday:'long', day:'2-digit', month:'long'});
+      const list = document.getElementById('fixtures');
+      list.innerHTML = '';
+      fixtures.forEach(f=>{
+        const row = document.createElement('div');
+        row.className = 'list-item';
+        row.innerHTML = `
+          <div style="display:flex; align-items:center; gap:.5rem"><span class="chip" style="background:rgba(220,38,38,.08); color:var(--primary-3)">${f.time}</span><strong>${f.home}</strong> vs <strong>${f.away}</strong></div>
+          <span class="meta" style="color:var(--muted)">${f.comp}</span>`;
+        list.appendChild(row);
+      });
+    }
+
+    function renderTable(){
+      const tb = document.getElementById('tableBody');
+      tb.innerHTML = '';
+      standings.forEach(t=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${t.pos}</td><td>${t.team}</td><td>${t.p}</td><td>${t.w}</td><td>${t.d}</td><td>${t.l}</td><td>${t.gf}</td><td>${t.ga}</td><td>${t.gd}</td><td><strong>${t.pts}</strong></td>`;
+        tb.appendChild(tr);
+      });
+    }
+
+    // Recherche
+    document.getElementById('search').addEventListener('input', e=>renderNews(e.target.value));
+
+    // Newsletter (démo)
+    function subscribe(e){
+      e.preventDefault();
+      const email = new FormData(e.target).get('email');
+      alert(`Merci ! Alerte activée pour ${email}.`);
+      e.target.reset();
+    }
+
+    // CTA header
+    document.getElementById('subscribeBtn').addEventListener('click', ()=>{
+      document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});
+    });
+
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderScores();
+    renderNews();
+    renderFixtures();
+    renderTable();
+  </script></body>
+</html>
